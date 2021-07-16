@@ -1,0 +1,14 @@
+<h1>List of works to do</h1>
+
+<form method="post" action="{% url 'todo:add_todo' %}">
+    {% csrf_token %}
+    {% if todo_list %}
+        {% for todo in todo_list %}
+            <p>{{ todo.name }}  <a href="{% url 'todo:delete_todo' todo.id %}"><input type="button" value="Delete"/></a></p>
+        {% endfor %}
+    {% else %}
+        <p>There are no todo's</p>
+    {% endif %}
+    <input type="text" name="name" />
+    <input type="submit" value="Add Todo"/><br>
+</form>
